@@ -1,0 +1,73 @@
+{
+  "name": "tinode-sdk",
+  "description": "Tinode SDK",
+  "version": "0.19.3",
+  "scripts": {
+    "format": "js-beautify -r src/*.js",
+    "build": "npm run vers && npm run format && npm run build:prod && npm run build:dev",
+    "build:prod": "browserify ./src/tinode.js --standalone Tinode -t [ babelify ] --plugin tinyify > ./umd/tinode.prod.js",
+    "build:dev": "browserify ./src/tinode.js --debug --extensions \".ts,.tsx\" --standalone Tinode -t [ babelify ] > ./umd/tinode.dev.js",
+    "build:docs": "jsdoc ./src -t ./node_modules/minami -d ../tinode.github.io/js-api",
+    "vers": "echo \"{\\\"version\\\": \\\"`node -p -e \"require('./package.json').version\"`\\\"}\" > version.json",
+    "test": "jest",
+    "comp:dev": "webpack --mode development",
+    "comp:prod": "webpack --mode production"
+  },
+  "browserslist": "> 0.5%, not IE 11, not op_mini all, not and_uc >0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinode/tinode-js.git"
+  },
+  "files": [
+    "umd/tinode.dev.js",
+    "umd/tinode.prod.js",
+    "version.json"
+  ],
+  "keywords": [
+    "instant messenger",
+    "messenger",
+    "chat"
+  ],
+  "email": "info@tinode.co",
+  "author": "Tinode Authors <info@tinode.co>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tinode/tinode-js/issues"
+  },
+  "homepage": "https://github.com/tinode/chat",
+  "main": "./umd/tinode.prod.js",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/plugin-transform-typescript": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "eslint": "^8.32.0",
+    "jest": "^28.0.0",
+    "js-beautify": "^1.13.0",
+    "jsdoc": "^3.6.6",
+    "minami": "^1.2.3",
+    "tinyify": "^3.0.0"
+  },
+  "dependencies": {
+    "babel-loader": "^9.1.2",
+    "corestore": "^6.5.1",
+    "dht-universal": "^0.4.1",
+    "graceful-goodbye": "^1.2.1",
+    "hypercore": "^10.8.1",
+    "hyperdrive": "^10.21.0",
+    "hyperswarm": "^4.3.7",
+    "random-access-idb": "^1.2.2",
+    "random-access-memory": "^6.1.0",
+    "terser-webpack-plugin": "^5.3.7",
+    "uuid": "^9.0.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-remove-code-blocks": "^0.1.5",
+    "y-indexeddb": "^9.0.9",
+    "y-webrtc": "^10.2.4",
+    "yjs": "^13.5.44"
+  }
+}
